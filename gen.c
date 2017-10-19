@@ -14,38 +14,21 @@ int main(){
 	printf("\n A | B | C | D || Y");
 	i=1;
 	printf("\n --|---|---|---||---");
-	printf("\n 0 | 0 | 0 | 0 || %d", num[i]);
-	i++;
-	printf("\n 0 | 0 | 0 | 1 || %d", num[i]);
-	i++;
-	printf("\n 0 | 0 | 1 | 0 || %d", num[i]);
-	i++;
-	printf("\n 0 | 0 | 1 | 1 || %d", num[i]);
-	i++;
-	printf("\n 0 | 1 | 0 | 0 || %d", num[i]);
-	i++;
-	printf("\n 0 | 1 | 0 | 1 || %d", num[i]);
-	i++;
-	printf("\n 0 | 1 | 1 | 0 || %d", num[i]);
-	i++;
-	printf("\n 0 | 1 | 1 | 1 || %d", num[i]);
-	i++;
-	printf("\n 1 | 0 | 0 | 0 || %d", num[i]);
-	i++;
-	printf("\n 1 | 0 | 0 | 1 || %d", num[i]);
-	i++;
-	printf("\n 1 | 0 | 1 | 0 || %d", num[i]);
-	i++;
-	printf("\n 1 | 0 | 1 | 1 || %d", num[i]);
-	i++;
-	printf("\n 1 | 1 | 0 | 0 || %d", num[i]);
-	i++;
-	printf("\n 1 | 1 | 0 | 1 || %d", num[i]);
-	i++;
-	printf("\n 1 | 1 | 1 | 0 || %d", num[i]);
-	i++;
-	printf("\n 1 | 1 | 1 | 1 || %d", num[i]);
-	i++;
+	for(int a=0;a<2;a++)
+	{
+		for(int b=0;b<2;b++)
+		{
+			for(int c=0;c<2;c++)
+			{
+				for(int d=0;d<2;d++)
+				{
+					printf("\n %d | %d | %d | %d || %d", a, b, c, d, num[i]);
+					i++;
+				}
+			}
+		}
+	}
+				
 	a = i;
 	printf("\n\n");
 	printf("\n             d   ");
