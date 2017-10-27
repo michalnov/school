@@ -5,7 +5,6 @@
 #include <string.h>
 //#include <conio.h>
 
-
 int overenie();
 int mince();
 int mena();
@@ -19,8 +18,6 @@ int minimum();
 int sorting();
 int palindrom();
 int obdobie();
-int diamond();
-int triangle();
 int help();
 
 
@@ -56,18 +53,18 @@ int main(int argc, char const *argv[])
 int klad_zapor(){
 	int i=0;
 	printf("Please enter a number:\n");
-	scanf("%dn", &i);
+	scanf("%d", &i);
 	if (i==0)
 	{
 		printf("Number is NULL\n");
 	}
 	else if (i>0)
 	{
-		printf("Number %dn is positive\n", i);
+		printf("Number %d is positive\n", i);
 	}
 	else 
 	{
-		printf("Number %dn is negative\n", i);
+		printf("Number %d is negative\n", i);
 	}
 }
 
@@ -75,14 +72,14 @@ int parnost(){
 
 	int m=0;
 	printf("zadaj vstup\n");
-	scanf("%dn", &m);
+	scanf("%d", &m);
 	if (m%2 == 0)
 	{
-		printf("cislo %dn je parne\n", m);
+		printf("cislo %d je parne\n", m);
 	}
 	else
 	{
-		printf("cislo %dn je neparne\n", m);
+		printf("cislo %d je neparne\n", m);
 	}
 }
 
@@ -147,16 +144,6 @@ int mselect()
 		palindrom();
 		return 0;
 		}
-	else if (strcmp(use, "diamond")==0)
-		{
-		diamond();
-		return 0;
-		}
-	else if (strcmp(use, "triangle")==0)
-		{
-		triangle();
-		return 0;
-		}
 	else if (strcmp(use, "obdobie")==0)
 		{
 		obdobie();
@@ -200,90 +187,6 @@ int mince(){
 			printf("zadaj 4 kladne cele cisla\n");
 		}
 	}while(i_pom == 1);
-
-
-
-int diamond(){
-	int i, j,z=0,m;
-    
-    printf("Enter the  triangle height: ");
-  	scanf("%dn",&m);
-     
-    
-    for(i = 1; i <= m; i++) 
-	{
-        
-        for(j = 1; j <= m-i; j++) {
-           printf(" ");
-        }
-        
-        while(z < (2*i - 1)) {
-            printf("*");
-            z++;;
-        }
-        z=0;
-        
-        printf("\n");
-    }
-    m--;
-    
-    for(i = m;i >= 1; i--) 
-	{
-        
-        for(j = 0; j <= m-i; j++) {
-           printf(" ");
-        }
-        
-        z = 0;
-        while(z < (2*i - 1)) {
-            printf("*");
-            z++;
-        }
-        printf("\n");
-    }
- 
-    return 0;
-}
-
-
-int triangle(){
-		int m,i=0,j=0,n,h;
-	char z;
-	
-   	printf("Enter the  triangle height: ");
-  	scanf("%dn",&m);
-//  printf("Enter the numbers of col: ");
-// 	scanf("%dn",&n);
-  	getchar();
-//  printf("Enter the character: ");
-// 	scanf("%c",&z);
-  		
-  	for(i=1;i<=m;i++)
-  	{
-  	
-		for(j=1;j<=m-i;j++)
-  		{
-  			printf("  ");		
-	  	}
-	  	
-	  	h=0;
-	  	
-//		while(h != 2*i-1)
-        while(h<(2*i-1))
-	  	{
-            h++;
-			printf("* ");
-           
-        }
-	  	
-	  	
-	  printf("\n");	
-}
-}
-
-
-	
-
 	if (i_minca1 != i_minca2)
 	{
 		if (i_minca2 != i_minca3)
@@ -306,7 +209,7 @@ int triangle(){
 			printf("minca 4 je falošná\n");
 		}
 	}
-};
+}
 
 int overenie(){
 	int i_pokus = 3, i_cislo1 = 0, i_cislo2 = 0, i_odpoved = 0, i_spravna = 0;
@@ -318,8 +221,8 @@ int overenie(){
 		i_spravna = i_cislo1 + i_cislo2;
 		
 
-		printf("how many is : %dn * %dn", i_cislo1, i_cislo2 );
-		scanf("%dn", &i_odpoved);
+		printf("how many is : %d * %d\n", i_cislo1, i_cislo2 );
+		scanf("%d", &i_odpoved);
 
 		if (i_odpoved == i_spravna)
 		{
@@ -329,9 +232,9 @@ int overenie(){
 		else if (i_pokus > 0)
 		{
 			i_pokus --;
-			printf(" :( NO %dn \n",i_spravna);
-			printf("You may try it %dn more times\n", i_pokus);
-			//printf("%dn", i_spravna);
+			printf(" :( NO %d \n",i_spravna);
+			printf("You may try it %d more times\n", i_pokus);
+			//printf("%d\n", i_spravna);
 		}
 		else {
 			printf("NO! get out of here\n");
@@ -372,13 +275,13 @@ int reverse(){
 int cifSucet(){
 	int cislo=0, sucet=0, i=0;
 	
-		scanf("%dn", &cislo);
+		scanf("%d", &cislo);
 		while(cislo > 0)
 		{
 			sucet = sucet + (cislo % 10);
 			cislo = cislo / 10;
 		}
-		printf("sucet je %dn", sucet);
+		printf("sucet je %d", sucet);
 		return 0;
 };
 
@@ -469,7 +372,7 @@ int sorting(){
 	int num=0, i=0, j=0, swap=0, run=1;
 	do
 	{
-		scanf("%dn", &num);
+		scanf("%d", &num);
 	} while ((num < 0) || (num > 254));
 	float digit = 0;
 	float *some = malloc(num * sizeof(float));
@@ -483,7 +386,7 @@ int sorting(){
 		scanf("%f", &digit);
 		some[i] = digit;
 		printf("zadane %f\n", some[i]);
-		 
+		i++;
 	} while (i < num);
 	
 	for (i = 0; i < num; i++)
@@ -506,7 +409,7 @@ int palindrom()
 {
 	printf("enter thee digit number\n");
 	int x=0;
-	scanf("%dn", &x);
+	scanf("%d", &x);
 	if ((x<1000) && (x>99))
 	{
 		int z=0, y=0;
@@ -531,7 +434,7 @@ int obdobie()
 {
 	int mesiac=0;
 	printf("Enter moon number:\n");
-	scanf("%dn", &mesiac);
+	scanf("%d", &mesiac);
 	if ((mesiac > 12) || (mesiac < 1) )
 	{
 		printf("Wrong number\n");
@@ -557,11 +460,3 @@ int obdobie()
 	}
 }
 
-/*int abc()
-{
-	int a = 4, b = 5, c = 0;
-	do
-	{
-	
-	} while ((scanf()));
-}*/
