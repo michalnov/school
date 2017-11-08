@@ -53,16 +53,16 @@ int main(int argc, char const *argv[]) {
     for (j = 0; j < resolution; j++)
     {
       printf("\n %d / %d \n", i, j);
-      printMatrix(resolution, matrix);
+      printMatrix(resolution, copy);
       posR = i;
       posC = j;
       element = copy[i][j];
 
-      if (posR+toWin-1 <= resolution) //START testing row
+      if (posR+toWin-1 < resolution) //START testing row
       {
         if (testRow(toWin, posR, posC, matrix, resolution)==0)
         {
-          if (element == 0)
+          if (element == 0 || element == 7)
           {
             vinPlayer0++;
             for (swap = 0; swap < toWin; swap++)
@@ -83,12 +83,12 @@ int main(int argc, char const *argv[]) {
         {}
       }
       else{}   //END testing row
-/*
-      if (posC+toWin-1 <= resolution) //START testing col
+
+      if (posC+toWin-1 < resolution) //START testing col
       {
-        if (testCol(toWin, i, j, matrix, resolution))
+        if (testCol(toWin, i, j, matrix, resolution) == 0)
         {
-          if (element == 0)
+          if (element == 0 || element == 7)
           {
             vinPlayer0++;
             for (swap = 0; swap < toWin; swap++)
@@ -110,11 +110,11 @@ int main(int argc, char const *argv[]) {
         }
         else{}   //END testing col
 
-          if (posR+toWin-1 <= resolution && posC+toWin-1 <= resolution) //START testing LEFT DIAGONAL
+          if (posR+toWin-1 < resolution && posC+toWin-1 < resolution) //START testing LEFT DIAGONAL
           {
-            if (testDiagLeft(toWin, i, j, matrix, resolution))
+            if (testDiagLeft(toWin, i, j, matrix, resolution) == 0)
             {
-              if (element == 0)
+              if (element == 0 || element == 7)
               {
                 vinPlayer0++;
                 for (swap = 0; swap < toWin; swap++)
@@ -136,16 +136,16 @@ int main(int argc, char const *argv[]) {
           }
           else{}   //END testing LEFT DIAGONAL
 
-          if (posR+toWin-1 <= resolution && posC-toWin+1 <= 0) //START testing RIGHT DIAGONAL
+          if (posR+toWin-1 < resolution && posC-toWin+1 <= 0) //START testing RIGHT DIAGONAL
           {
-            if (testDiagLeft(toWin, i, j, matrix, resolution))
+            if (testDiagRight(toWin, i, j, matrix, resolution) == 0)
             {
-              if (element == 0)
+              if (element == 0 || element == 7)
               {
                 vinPlayer0++;
                 for (swap = 0; swap < toWin; swap++)
                 {
-                  copy[i-swap][j-swap] = 7;
+                  copy[i+swap][j-swap] = 7;
                 }
               }
               else
@@ -153,7 +153,7 @@ int main(int argc, char const *argv[]) {
                 vinPlayer1++;
                 for (swap = 0; swap < toWin; swap++)
                 {
-                  copy[i-swap][j-swap] = 8;
+                  copy[i+swap][j-swap] = 8;
                 }
               }
             }
@@ -161,7 +161,7 @@ int main(int argc, char const *argv[]) {
             {}
           }
           else{}   //END testing RIGHT DIAGONAL
-          */
+
         }
     }
     printf("player 0 have: %d points\n player 1 have: %d points \n", vinPlayer0, vinPlayer1);
@@ -212,9 +212,9 @@ int checkRange(int res, int pos, int matrix[][D])
 int testRow(int toWin, int posR, int posC, int matrix[][D], int res)
 {
   int result = 1, i = 0;
-  for (i = 0; i < toWin-1; i++)
+  for (i = 0; i < toWin; i++)
   {
-    if (matrix[posR][posC] != matrix[posR][posC+1+i])
+    if (matrix[posR][posC] != matrix[posR][posC+1+i] && matrix[posR][posC] != matrix[posR][posC+1+i]+7)
     {
       return 1;
     }
@@ -222,14 +222,12 @@ int testRow(int toWin, int posR, int posC, int matrix[][D], int res)
   return 0;
 }
 
-
-
 int testCol(int toWin, int posR, int posC, int matrix[][D], int res)
 {
   int result = 1, i = 0;
   for (i = 0; i < toWin; i++)
   {
-    if (matrix[posR][posC] != matrix[posR+1+i][posC])
+    if (matrix[posR][posC] != matrix[posR+1+i][posC] && matrix[posR][posC] != matrix[posR+1+i][posC]+7)
     {
       return 1;
     }
@@ -242,7 +240,7 @@ int testDiagLeft(int toWin, int posR, int posC, int matrix[][D], int res)
   int result = 1, i = 0;
   for (i = 0; i < toWin; i++)
   {
-    if (matrix[posR][posC] != matrix[posR+1+i][posC+1+i])
+    if (matrix[posR][posC] != matrix[posR+1+i][posC+1+i] && matrix[posR][posC] != matrix[posR+1+i][posC+1+i] +7)
     {
       return 1;
     }
@@ -255,7 +253,7 @@ int testDiagRight(int toWin, int posR, int posC, int matrix[][D], int res)
   int result = 1, i = 0;
   for (i = 0; i < toWin; i++)
   {
-    if (matrix[posR][posC] != matrix[posR-1-i][posC-1-i])
+    if (matrix[posR][posC] != matrix[posR+1+i][posC-1-i] && matrix[posR][posC] != matrix[posR+1+i][posC-1-i]+7)
     {
       return 1;
     }
