@@ -7,7 +7,7 @@
 #define D 8
 
 void printMatrix(int res, int matrix[][D]);
-int checkRange(int pos, int matrix[][D]);
+int checkRange(int res, int pos, int matrix[][D]);
 
 int main(int argc, char const *argv[]) {
   int matrix[D][D], swap = 0, vinPlayer0 = 0, vinPlayer1 = 0, i = 0, j = 0;
@@ -49,7 +49,7 @@ void printMatrix(int res, int matrix[][D])
   }
   printf("\n");
 }
-int checkRange(int pos, int matrix[][D])
+int checkRange(int res, int pos, int matrix[][D])
 {
 
 }
