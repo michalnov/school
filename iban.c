@@ -207,15 +207,22 @@ int main(int argc, char const *argv[]) {
   if (res < 0) {
     res = res * (-1);
   }
-  printf("%d\n", res);
+  //printf("%d\n", res);
   itoaA(res, todivide);
   if (res == 0) {
     iban[2] = '0';
     iban[3] = '0';
+    printf("%s\n", iban);
+    return 0;
   }
   else if (res < 10) {
+    res = res - 1;
+    itoaA(res, todivide);
     iban[2] = '0';
     iban[3] = todivide[0];
+    printf("%s\n", iban);
+    return 0;
+
   }
   else
   {
