@@ -11,7 +11,7 @@ int main(int argc, char const *argv[]) {
 
   char bankCode[5], prefix[7];
   char accountNumber[11], country[3];
-  char iban[29], copy[29];
+  char copy[29];
   int i = 0;
   strcpy(country, "SK");
   strcpy(bankCode, "0000");
@@ -98,7 +98,8 @@ int main(int argc, char const *argv[]) {
   strcpy(iban, "SK00");
   strcat(iban, copy);
                           //START CALCULATING
-  char todivide[5], swap, decimal[10];
+  char todivide[5], swap[4], decimal[12];
+  strcpy(decimal, "0.");
   strcpy(todivide, "0");
   strcpy(postfix,"282000");
   strcat(copy, postfix);
@@ -108,36 +109,42 @@ int main(int argc, char const *argv[]) {
   len = strlen(copy);
                           //dividing
   do {
-    do {
-      if (a < len) {
-        swap = copy[a];
-        a++;
-        strcat(todivide, swap);
-        toCalc = atoi(todivide);
-      }
-      else
-      {
-        swap = '0';
-        strcat(todivide, swap);
-        toCalc = atoi(todivide);
-        break;
-      }
-
-    } while(toCalc <= 97);
-    residuum = todivide / 97;
-    res = todivide - ((int)residuum*97);
+    if (a < len) {
+      swap[0] = copy[a];
+      swap[1] = '\0';
+      a++;
+    }
+    else
+    {
+      swap[0] = '0';
+      swap[1] = '\0';
+    }
+    strcat(todivide, swap);
+    toCalc = atoi(todivide);
+    residuum = toCalc / 97;
+    res = toCalc - ((int)residuum*97);
     if (a < len) {
       itoa(res, todivide, 10);
     }
     else
     {
       itoa((int)residuum, swap, 10);
-      decimal[b] = swap;
+      strcat(decimal, swap);
       b++;
-      decimal[b] = '\0';
-      swap = '0';
+      swap[0] = '0';
+      swap[1] = '\0';
     }
-  } while(b < 8;
-
+  } while(b < 8);
+  result = (double)atof(decimal);
+  toCalc = 97 * result;
+  res = 98 - toCalc;
+  if (res < 0) {
+    res = res * (-1);
+  }
+  itoa(res, todivide, 10);
+  printf("%s\n", todivide);
+  iban[2] = todivide[0];
+  iban[3] = todivide[1];
+  printf("%s\n", iban);
   return 0;
 }
