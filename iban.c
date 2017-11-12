@@ -11,7 +11,7 @@ int main(int argc, char const *argv[]) {
 
   char bankCode[5], prefix[7];
   char accountNumber[11], country[3];
-  char iban[26], copy[26];
+  char iban[29], copy[29];
   int i = 0;
   strcpy(country, "SK");
   strcpy(bankCode, "0000");
@@ -93,6 +93,18 @@ int main(int argc, char const *argv[]) {
   strcat(copy, prefix);
   strcat(copy, accountNumber);
   printf("%s\n", copy);
+
+                            //START CALCULATING
+  char postfix[9];
+  strcpy(postfix,"282000");
+  strcat(copy, postfix);
+  double residuum = 0, r = 0;
+  int a = 0, b = 0;
+  double result = 0;
+
+  do {
+    /* code */
+  } while(b < 8;
 
   return 0;
 }
