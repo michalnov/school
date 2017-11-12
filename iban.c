@@ -212,7 +212,7 @@ int main(int argc, char const *argv[]) {
   if (res == 0) {
     iban[2] = '0';
     iban[3] = '0';
-    printf("%s\n", iban);
+    printf("IBAN is: %s\n", iban);
     return 0;
   }
   else if (res < 10) {
@@ -220,7 +220,7 @@ int main(int argc, char const *argv[]) {
     itoaA(res, todivide);
     iban[2] = '0';
     iban[3] = todivide[0];
-    printf("%s\n", iban);
+    printf("IBAN is: %s\n", iban);
     return 0;
 
   }
@@ -235,6 +235,6 @@ int main(int argc, char const *argv[]) {
   //printf("%s\n", todivide);
   iban[2] = todivide[0];
   iban[3] = todivide[1];
-  printf("%s\n", iban);
+  printf("IBAN is: %s\n", iban);
   return 0;
 }
