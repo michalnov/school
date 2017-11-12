@@ -35,6 +35,7 @@ int main(int argc, char const *argv[]) {
   strcpy(prefix, "000000");
   strcpy(accountNumber, "0000000000");
 
+  printf("%s\n%s\n", "(Bank Code need to be at least one digit)", "Other positions will be filled with '0'");
   printf("\n%s", "Bank code: ");
   scanf("%s", bankCode);
   if (atoi(bankCode)==0) {
@@ -58,7 +59,8 @@ int main(int argc, char const *argv[]) {
       len = strlen(bankCode);
     }
   }
-  printf("%s", "prefix: ");
+  printf("\n%s\n%s\n", "(Account prefix need to be at least one digit)", "For account without prefix enter '0'");
+  printf("%s", "Account prefix: ");
   scanf("%s", prefix);
   if (atoi(prefix)==0)
   {
@@ -85,9 +87,11 @@ int main(int argc, char const *argv[]) {
       }
     }
   }
+  printf("\n%s\n%s\n", "(Account Number need to be at least 2 digits)", "Other positions will be filled with '0'");
   printf("%s", "Account Number: ");
   scanf("%s", accountNumber);
-  if (strlen(accountNumber) > 10 || atoi(accountNumber) == 0) {
+  printf("\n");
+  if (strlen(accountNumber) > 10 || atoi(accountNumber) == 0 || strlen(accountNumber) < 2 || atoi(accountNumber) <= 9) {
     printf("%s\n", "Wrong Input");
     return  1;
   }
@@ -108,12 +112,6 @@ int main(int argc, char const *argv[]) {
     }
   }
 
-  //testing
-  //strcpy(prefix, "000000");
-  //strcpy(bankCode, "7500");
-  //strcpy(accountNumber, "1231231230");
-
-
   strcat(copy, bankCode);
   strcat(copy, prefix);
   strcat(copy, accountNumber);
@@ -122,7 +120,7 @@ int main(int argc, char const *argv[]) {
   char iban[30];
   strcpy(iban, "SK00");
   strcat(iban, copy);
-                          //START CALCULATING
+                                                      //START CALCULATING
   char todivide[5], swap[4], decimal[15], full[30];
   strcpy(full, "");
   strcpy(decimal, "0.");
@@ -146,20 +144,9 @@ int main(int argc, char const *argv[]) {
   residuum = toCalc / 97;
   res = toCalc - ((int)residuum*97);
   //printf("toCalc %d residuum %lf res %d\n", toCalc, residuum, res);
-  if (a < len) {
-    itoaA((int)residuum, swap);
-    strcat(full, swap);
-    itoaA(res, todivide);
-  }
-  else
-  {
-    itoaA((int)residuum, swap);
-    strcat(decimal, swap);
-    b++;
-    swap[0] = '0';
-    swap[1] = '\0';
-    itoaA(res, todivide);
-  }
+  itoaA((int)residuum, swap);
+  strcat(full, swap);
+  itoaA(res, todivide);
   do {
     if (a <= len) {
       swap[0] = copy[a];
@@ -215,7 +202,7 @@ int main(int argc, char const *argv[]) {
     printf("IBAN is: %s\n", iban);
     return 0;
   }
-  else if (res < 10) {
+  else if (res <= 10) {
     res = res - 1;
     itoaA(res, todivide);
     iban[2] = '0';
