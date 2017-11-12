@@ -93,17 +93,50 @@ int main(int argc, char const *argv[]) {
   strcat(copy, prefix);
   strcat(copy, accountNumber);
   printf("%s\n", copy);
-
-                            //START CALCULATING
   char postfix[9];
+  char iban[30];
+  strcpy(iban, "SK00");
+  strcat(iban, copy);
+                          //START CALCULATING
+  char todivide[5], swap, decimal[10];
+  strcpy(todivide, "0");
   strcpy(postfix,"282000");
   strcat(copy, postfix);
-  double residuum = 0, r = 0;
-  int a = 0, b = 0;
+  double residuum = 0.00, r = 0.00;
+  int a = 0, res = 0, b = 0, toCalc = 0;
   double result = 0;
-
+  len = strlen(copy);
+                          //dividing
   do {
-    /* code */
+    do {
+      if (a < len) {
+        swap = copy[a];
+        a++;
+        strcat(todivide, swap);
+        toCalc = atoi(todivide);
+      }
+      else
+      {
+        swap = '0';
+        strcat(todivide, swap);
+        toCalc = atoi(todivide);
+        break;
+      }
+
+    } while(toCalc <= 97);
+    residuum = todivide / 97;
+    res = todivide - ((int)residuum*97);
+    if (a < len) {
+      itoa(res, todivide, 10);
+    }
+    else
+    {
+      itoa((int)residuum, swap, 10);
+      decimal[b] = swap;
+      b++;
+      decimal[b] = '\0';
+      swap = '0';
+    }
   } while(b < 8;
 
   return 0;
