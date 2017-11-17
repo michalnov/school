@@ -17,6 +17,7 @@ int main(int argc, char const *argv[]) {
     print[i+1] = '\0';
   }
   int j;
+  int pokus = 10;
   char some;
   do {
     printf("\n%s\n", print);
@@ -45,7 +46,9 @@ int main(int argc, char const *argv[]) {
      	{}
      }
      if(right == 0)
-     {try++;}
+     {try++;
+        pokus--;
+     }
     if (strcmp(print, secret)) {
       won = 1;
     }
@@ -54,6 +57,8 @@ int main(int argc, char const *argv[]) {
         printf("Answer is: %s\n", "secret");
         return 0;
     }
-  } while(won == 0 || try < 8);
+
+    printf("%s %d %s\n", "ostava ti", pokus, "pokusov");
+  } while(won == 0 || try < 11);
   return 0;
 }
